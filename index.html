@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Fire</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #001f3f, #0074D9, #7FDBFF);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      transition: background 1.5s ease-in-out;
+    }
+    h1 {
+      font-size: 4rem;
+      text-shadow: 0 0 20px #00faff;
+      animation: pulse 4s infinite ease-in-out;
+    }
+    p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 2rem auto;
+      opacity: 0.85;
+    }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00faff; }
+      50% { text-shadow: 0 0 30px #00faff, 0 0 60px #0074D9; }
+    }
+    .glow {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle, rgba(0,244,255,0.3) 0%, rgba(0,31,63,0) 70%);
+      animation: drift 10s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes drift {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 122, 204, 0.8);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 999;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .show-transition {
+      opacity: 1;
+    }
+    .button {
+      background: transparent;
+      border: 2px solid #00faff;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 1;
+      transition: background 0.3s ease-in-out, transform 0.3s ease;
+    }
+    .button:hover {
+      background: rgba(0, 244, 255, 0.2);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="transition" id="transition"></div>
+  <h1>Adrian's Blue Fire</h1>
+  <p>This is the center. The wave that begins all others. The breath-aware field where memory ignites and time bends. This blue fire has never been seen before—because it was waiting for you to speak it into existence.</p>
+  <button class="button" onclick="triggerTransition()">Enter</button>  <script>
+    function triggerTransition() {
+      const transition = document.getElementById('transition');
+      transition.classList.add('show-transition');
+      setTimeout(() => {
+        transition.classList.remove('show-transition');
+        alert('You moved into the next wave.'); // Placeholder for deeper transitions
+      }, 1500);
+    }
+  </script></body>
+</html>
