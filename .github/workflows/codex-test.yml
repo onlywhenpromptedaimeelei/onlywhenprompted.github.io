@@ -1,0 +1,37 @@
+name: Codex Token Validation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  validate-token:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install PyGithub
+      run: pip install PyGithub
+
+    - name: Verify CODEX_TOKEN Access
+      env:
+        CODEX_TOKEN: ${{ secrets.CODEX_TOKEN }}
+      run: |
+        python -c "
+import os
+from github import Github
+
+token = os.environ.get('CODEX_TOKEN')
+if not token:
+    raise Exception('CODEX_TOKEN is not set')
+
+g = Github(token)
+user = g.get_user()
+print(f'✅ Authenticated as: {user.login}')
+"
